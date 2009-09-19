@@ -22,6 +22,7 @@
 			 <!ENTITY hyperlinkregex "\[[^\]\^]+\]\[[^\]]*\]">
 			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
 			 <!ENTITY inlineimageregex '\!\[[^\]\^]+\]\([^\(]+\)'>
+			 <!ENTITY refimageregex '\!\[[^\]\^]+\]\[[^\[]+\]'>
 			 <!ENTITY reflinkregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]+\"){0,1}'>
 ]>
 
@@ -77,6 +78,7 @@
 				<RegExpr attribute="footnote" String="&footnoteregex;" />
 				<RegExpr attribute="reflink" String="&reflinkregex;"/>
 				<RegExpr attribute="inlineimage" String="&inlineimageregex;"/>
+				<RegExpr attribute="refimage" String="&refimageregex;"/>
 			</context>
 
 		</contexts>
@@ -106,6 +108,7 @@
 			<itemData name="meta"  defStyleNum="dsComment" />
 			<itemData name="reflink" defStyleNum="dsOthers" italic="false" bold="false" />
 			<itemData name="inlineimage" defStyleNum="dsAlert" italic="false" bold="false" />
+			<itemData name="refimage" defStyleNum="dsAlert" italic="false" bold="false" />
 		</itemDatas>
 
     </highlighting>
