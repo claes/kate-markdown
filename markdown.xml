@@ -4,6 +4,8 @@
 
 	Copyright 2008 Darrin Yeager. http://www.dyeager.org/
 	Dual-Licensed under both GPL and BSD licenses.
+	
+	Extended 2009 Claes Holmerson
 -->
 
 
@@ -19,11 +21,12 @@
 			 [
 			 <!ENTITY strongregex "(\s|^)[\*]{2}[^\s]{1}[^\*]+[\*]{2}(\s|\.|,|;|:|\-|\?|$)">
 			 <!ENTITY emphasisregex "(\s|^)[\*]{1}[^\s]{1}[^\*]+[\*]{1}(\s|\.|,|;|:|\-|\?|$)">
-			 <!ENTITY hyperlinkregex "\[[^\]\^]+\]\[[^\]]*\]">
+			 <!ENTITY reflinkregex '\[[^\]\^]+\]\s*\[[^\]]*\]\s*(\s\"[^\"]*\"){0,1}'>
+			 <!ENTITY reflinktargetregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]*\"){0,1}'>
 			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
-			 <!ENTITY inlineimageregex '\!\[[^\]\^]+\]\([^\(]+\)'>
-			 <!ENTITY refimageregex '\!\[[^\]\^]+\]\[[^\[]+\]'>
-			 <!ENTITY reflinkregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]+\"){0,1}'>
+			 <!ENTITY inlinelinkregex '\[[^\]\^]+\]\s*\([^\(]*\)'>
+			 <!ENTITY inlineimageregex '\!\[[^\]\^]+\]\([^\(]*\)'>
+			 <!ENTITY refimageregex '\!\[[^\]\^]+\]\[[^\[]*\]'>
 ]>
 
 <language name="Markdown" version="1.1" section="Markup"
@@ -74,9 +77,10 @@
 			<context name="inc" >
 				<RegExpr attribute="code" String="`[^`]+`" />
 				<RegExpr context="comment" String="&lt;!--" beginRegion="comment" />
-				<RegExpr attribute="hyperlink" String="&hyperlinkregex;" />
+				<RegExpr attribute="reflink" String="&reflinkregex;" />
 				<RegExpr attribute="footnote" String="&footnoteregex;" />
-				<RegExpr attribute="reflink" String="&reflinkregex;"/>
+				<RegExpr attribute="inlinelink" String="&inlinelinkregex;"/>
+				<RegExpr attribute="reflinktarget" String="&reflinktargetregex;"/>
 				<RegExpr attribute="inlineimage" String="&inlineimageregex;"/>
 				<RegExpr attribute="refimage" String="&refimageregex;"/>
 			</context>
@@ -103,10 +107,11 @@
 			<itemData name="nl-strong" defStyleNum="dsFloat" bold="true" />
 			<itemData name="comment"  defStyleNum="dsComment" />
 			<itemData name="code" defStyleNum="dsBaseN" />
-			<itemData name="hyperlink" defStyleNum="dsOthers" underline="true" />
+			<itemData name="reflink" defStyleNum="dsOthers" underline="true" />
 			<itemData name="footnote" defStyleNum="dsOthers" italic="true" />
 			<itemData name="meta"  defStyleNum="dsComment" />
-			<itemData name="reflink" defStyleNum="dsOthers" italic="false" bold="false" />
+			<itemData name="inlinelink" defStyleNum="dsOthers" italic="false" bold="false" />
+			<itemData name="reflinktarget" defStyleNum="dsOthers" italic="false" bold="false" />
 			<itemData name="inlineimage" defStyleNum="dsAlert" italic="false" bold="false" />
 			<itemData name="refimage" defStyleNum="dsAlert" italic="false" bold="false" />
 		</itemDatas>
