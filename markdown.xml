@@ -19,8 +19,9 @@
 -->
 <!DOCTYPE language SYSTEM "language.dtd"
 			 [
-			 <!ENTITY strongregex "(\s|^)[\*_]{2,}[^\s]{1}[^\*_]+[\*_]{2,}(\s|\.|,|;|:|\-|\?|$)">
-			 <!ENTITY emphasisregex "(\s|^)[\*_]{1}[^\s]{1}[^\*]+[\*_]{1}(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY strongemphasisregex "(\s|^)[\*_]{3}[^\*_]+[\*_]{3}(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY strongregex "(\s|^)[\*_]{2}[^\s\*_]{1}[^\*_]+[\*_]{2}(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY emphasisregex "(\s|^)[\*_]{1}[^\s*_]{2}[^\*_]+[\*_]{1}(\s|\.|,|;|:|\-|\?|$)">
 			 <!ENTITY reflinkregex '\[[^\]\^]+\]\s*\[[^\]]*\]\s*(\s\"[^\"]*\"){0,1}'>
 			 <!ENTITY reflinktargetregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]*\"){0,1}'>
 			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
@@ -47,6 +48,7 @@
 				<RegExpr attribute="h5" String="^#####\s.*[#]?$" />
 				<RegExpr attribute="strong" String="&strongregex;" />
 				<RegExpr attribute="emphasis" String="&emphasisregex;" />
+				<RegExpr attribute="strongemphasis" String="&strongemphasisregex;" />
 				<RegExpr attribute="code" String="^([\s]{4,}|\t+).*$" />
 				<RegExpr context="bullet" String="^[\*\+\-]\s" />
 				<RegExpr context="numlist" String="^[\d]+\.\s" />
@@ -93,6 +95,7 @@
 
 		<itemDatas>
 			<itemData name="Normal Text" defStyleNum="dsNormal" />
+			<itemData name="strongemphasis" italic="true" bold="true"/>
 			<itemData name="emphasis" italic="true" />
 			<itemData name="strong"  bold="true" />
 			<itemData name="h1" defStyleNum="dsFunction" bold="true" />
