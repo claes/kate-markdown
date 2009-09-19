@@ -42,7 +42,7 @@
 				<RegExpr attribute="h5" String="^#####\s.*[#]?$" />
 				<RegExpr attribute="strong" String="&strongregex;" />
 				<RegExpr attribute="emphasis" String="&emphasisregex;" />
-				<RegExpr attribute="code" String="^[\s]{4,}.*$" />
+				<RegExpr attribute="code" String="^([\s]{4,}|\t+).*$" />
 				<RegExpr context="bullet" String="^[\*\+\-]\s" />
 				<RegExpr context="numlist" String="^[\d]+\.\s" />
 				<RegExpr attribute="meta" String="^(Title|Author|Date|Copyright|Revision|CSS|LaTeX\ XSLT|Categories|Tags|BaseName|Excerpt):(.*)+$" />
