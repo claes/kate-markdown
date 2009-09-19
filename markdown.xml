@@ -28,8 +28,9 @@
 			 <!ENTITY inlineimageregex '\!\[[^\]\^]+\]\([^\(]*\)'>
 			 <!ENTITY refimageregex '\!\[[^\]\^]+\]\[[^\[]*\]'>
 			 <!ENTITY autolinkregex '&lt;(https?|ftp):[^\"&gt;\s]+&gt;'>
+			 <!ENTITY mailtolinkregex '&lt;(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;'>
 ]>
-
+			 
 <language name="Markdown" version="1.1" section="Markup"
 		extensions="*.text;*.md;*.mmd;*.md.txt" priority="15"
 		author="Darrin Yeager webmaster@dyeager.org"
@@ -85,6 +86,7 @@
 				<RegExpr attribute="inlineimage" String="&inlineimageregex;"/>
 				<RegExpr attribute="refimage" String="&refimageregex;"/>
 				<RegExpr attribute="autolink" String="&autolinkregex;"/>
+				<RegExpr attribute="mailtolink" String="&mailtolinkregex;"/>
 			</context>
 
 		</contexts>
@@ -112,6 +114,7 @@
 			<itemData name="reflink" defStyleNum="dsOthers" underline="true" />
 			<itemData name="inlinelink" defStyleNum="dsOthers" underline="true" />
 			<itemData name="autolink" defStyleNum="dsOthers" underline="true" />
+			<itemData name="mailtolink" defStyleNum="dsOthers" underline="true" />
 			<itemData name="footnote" defStyleNum="dsOthers" italic="true" />
 			<itemData name="meta"  defStyleNum="dsComment" />
 			<itemData name="reflinktarget" defStyleNum="dsOthers" italic="false" bold="false" />
