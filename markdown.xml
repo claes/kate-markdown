@@ -21,7 +21,8 @@
 			 <!ENTITY emphasisregex "(\s|^)[\*]{1}[^\s]{1}[^\*]+[\*]{1}(\s|\.|,|;|:|\-|\?|$)">
 			 <!ENTITY hyperlinkregex "\[[^\]\^]+\]\[[^\]]*\]">
 			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
-			 <!ENTITY linklabelregex '\[[^\]\^]+\]\:\s[^\s]+(\s\"[^\"]+\"){0,1}'>
+			 <!ENTITY inlineimageregex '\!\[[^\]\^]+\]\([^\(]+\)'>
+			 <!ENTITY reflinkregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]+\"){0,1}'>
 ]>
 
 <language name="Markdown" version="1.1" section="Markup"
@@ -41,9 +42,8 @@
 				<RegExpr attribute="strong" String="&strongregex;" />
 				<RegExpr attribute="emphasis" String="&emphasisregex;" />
 				<RegExpr attribute="code" String="^[\s]{4,}.*$" />
-				<RegExpr context="bullet" String="^\*\s" />
+				<RegExpr context="bullet" String="^[\*\+\-]\s" />
 				<RegExpr context="numlist" String="^[\d]+\.\s" />
-				<RegExpr attribute="reflink" String="^\[[^\]]+\]:.*$"/>
 				<RegExpr attribute="meta" String="^(Title|Author|Date|Copyright|Revision|CSS|LaTeX\ XSLT|Categories|Tags|BaseName|Excerpt):(.*)+$" />
 				<IncludeRules context="inc" />
 			</context>
@@ -74,8 +74,9 @@
 				<RegExpr attribute="code" String="`[^`]+`" />
 				<RegExpr context="comment" String="&lt;!--" beginRegion="comment" />
 				<RegExpr attribute="hyperlink" String="&hyperlinkregex;" />
-				<RegExpr attribute="linklabel" String="&linklabelregex;" />
 				<RegExpr attribute="footnote" String="&footnoteregex;" />
+				<RegExpr attribute="reflink" String="&reflinkregex;"/>
+				<RegExpr attribute="inlineimage" String="&inlineimageregex;"/>
 			</context>
 
 		</contexts>
@@ -101,10 +102,10 @@
 			<itemData name="comment"  defStyleNum="dsComment" />
 			<itemData name="code" defStyleNum="dsBaseN" />
 			<itemData name="hyperlink" defStyleNum="dsOthers" underline="true" />
-			<itemData name="linklabel" defStyleNum="dsOthers" underline="true" />
 			<itemData name="footnote" defStyleNum="dsOthers" italic="true" />
 			<itemData name="meta"  defStyleNum="dsComment" />
-			<itemData name="reflink" defStyleNum="dsAlert" underline="true" bold="false" />
+			<itemData name="reflink" defStyleNum="dsOthers" italic="false" bold="false" />
+			<itemData name="inlineimage" defStyleNum="dsAlert" italic="false" bold="false" />
 		</itemDatas>
 
     </highlighting>
