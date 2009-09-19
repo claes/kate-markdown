@@ -20,8 +20,8 @@
 <!DOCTYPE language SYSTEM "language.dtd"
 			 [
 			 <!ENTITY strongemphasisregex "(\s|^)[\*_]{3}[^\*_]+[\*_]{3}(\s|\.|,|;|:|\-|\?|$)">
-			 <!ENTITY strongregex "(\s|^)[\*_]{2}[^\s\*_]{1}[^\*_]+[\*_]{2}(\s|\.|,|;|:|\-|\?|$)">
-			 <!ENTITY emphasisregex "(\s|^)(\*|_)[^\s\*_]{1}[^\*_]+\1(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY strongregex "(\s|^)[\*_]{2}[^\s]{1}[^\*_]+[\*_]{2}(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY emphasisregex "(\s|^)[\*_]{1}[^\s]{1}[^\*_]+[\*_]{1}(\s|\.|,|;|:|\-|\?|$)">
 			 <!ENTITY reflinkregex '\[[^\]\^]+\]\s*\[[^\]]*\]\s*(\s\"[^\"]*\"){0,1}'>
 			 <!ENTITY reflinktargetregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]*\"){0,1}'>
 			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
