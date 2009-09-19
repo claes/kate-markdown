@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Kate syntax highlight filter for Markdown/MultiMarkdown documents.
+
+	Copyright 2008 Darrin Yeager. http://www.dyeager.org/
+	Dual-Licensed under both GPL and BSD licenses.
+-->
+
+
+<!-- the [^\s]{1} is in the regex to avoid interfering with bullet list which
+	  starts "* item". Thus emphasis/strong MUST be formed like *words here*
+	  with the asterisks next to the beginning of the first word.
+
+	  Match space or newline, followed by "*", followed by one non-space,
+	  followed by anything non-asterisk, followed by "*", followed by
+	  space, end-of-sentence punctuation, or the end of the line.
+-->
+<!DOCTYPE language SYSTEM "language.dtd"
+			 [
+			 <!ENTITY strongregex "(\s|^)[\*]{2}[^\s]{1}[^\*]+[\*]{2}(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY emphasisregex "(\s|^)[\*]{1}[^\s]{1}[^\*]+[\*]{1}(\s|\.|,|;|:|\-|\?|$)">
+			 <!ENTITY hyperlinkregex "\[[^\]\^]+\]\[[^\]]*\]">
+			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
+			 <!ENTITY linklabelregex '\[[^\]\^]+\]\:\s[^\s]+(\s\"[^\"]+\"){0,1}'>
+]>
+
+<language name="Markdown" version="1.1" section="Markup"
+		extensions="*.text;*.md;*.mmd;*.md.txt" priority="15"
+		author="Darrin Yeager webmaster@dyeager.org"
+		license="GPL,BSD" >
+	<highlighting>
+		<contexts>
+
+			<context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" >
+				<DetectChar context="blockquote" char="&gt;" column="0"/>
+				<RegExpr attribute="h1" String="^#\s.*[#]?$" />
+				<RegExpr attribute="h2" String="^##\s.*[#]?$" />
+				<RegExpr attribute="h3" String="^###\s.*[#]?$" />
+				<RegExpr attribute="h4" String="^####\s.*[#]?$" />
+				<RegExpr attribute="h5" String="^#####\s.*[#]?$" />
+				<RegExpr attribute="strong" String="&strongregex;" />
+				<RegExpr attribute="emphasis" String="&emphasisregex;" />
+				<RegExpr attribute="code" String="^[\s]{4,}.*$" />
+				<RegExpr context="bullet" String="^\*\s" />
+				<RegExpr context="numlist" String="^[\d]+\.\s" />
+				<RegExpr attribute="reflink" String="^\[[^\]]+\]:.*$"/>
+				<RegExpr attribute="meta" String="^(Title|Author|Date|Copyright|Revision|CSS|LaTeX\ XSLT|Categories|Tags|BaseName|Excerpt):(.*)+$" />
+				<IncludeRules context="inc" />
+			</context>
+
+			<context attribute="blockquote" lineEndContext="#pop" name="blockquote">
+				<RegExpr attribute="bq-strong" String="&strongregex;" />
+				<RegExpr attribute="bq-emphasis" String="&emphasisregex;" />
+				<IncludeRules context="inc" />
+			</context>
+
+			<context attribute="bullet" lineEndContext="#pop" name="bullet" >
+				<RegExpr attribute="bl-strong" String="&strongregex;" />
+				<RegExpr attribute="bl-emphasis" String="&emphasisregex;" />
+				<IncludeRules context="inc" />
+			</context>
+
+			<context attribute="numlist" lineEndContext="#pop" name="numlist" >
+				<RegExpr attribute="nl-strong" String="&strongregex;" />
+				<RegExpr attribute="nl-emphasis" String="&emphasisregex;" />
+				<IncludeRules context="inc" />
+			</context>
+
+			<context attribute="comment" lineEndContext="#stay" name="comment" >
+				<RegExpr String="--&gt;" attribute="comment" context="#pop" endRegion="comment"/>
+			</context>
+
+			<context name="inc" >
+				<RegExpr attribute="code" String="`[^`]+`" />
+				<RegExpr context="comment" String="&lt;!--" beginRegion="comment" />
+				<RegExpr attribute="hyperlink" String="&hyperlinkregex;" />
+				<RegExpr attribute="linklabel" String="&linklabelregex;" />
+				<RegExpr attribute="footnote" String="&footnoteregex;" />
+			</context>
+
+		</contexts>
+
+		<itemDatas>
+			<itemData name="Normal Text" defStyleNum="dsNormal" />
+			<itemData name="emphasis" italic="true" />
+			<itemData name="strong"  bold="true" />
+			<itemData name="h1" defStyleNum="dsFunction" bold="true" />
+			<itemData name="h2" defStyleNum="dsFunction" bold="true" />
+			<itemData name="h3" defStyleNum="dsFunction" bold="true" />
+			<itemData name="h4" defStyleNum="dsFunction" bold="true" />
+			<itemData name="h5" defStyleNum="dsFunction" bold="true" />
+			<itemData name="blockquote" defStyleNum="dsDataType" />
+			<itemData name="bq-emphasis" defStyleNum="dsDataType" italic="true" />
+			<itemData name="bq-strong" defStyleNum="dsDataType" bold="true" />
+			<itemData name="bullet" defStyleNum="dsFloat" />
+			<itemData name="bl-emphasis" defStyleNum="dsFloat" italic="true" />
+			<itemData name="bl-strong" defStyleNum="dsFloat" bold="true" />
+			<itemData name="numlist" defStyleNum="dsFloat" />
+			<itemData name="nl-emphasis" defStyleNum="dsFloat" italic="true" />
+			<itemData name="nl-strong" defStyleNum="dsFloat" bold="true" />
+			<itemData name="comment"  defStyleNum="dsComment" />
+			<itemData name="code" defStyleNum="dsBaseN" />
+			<itemData name="hyperlink" defStyleNum="dsOthers" underline="true" />
+			<itemData name="linklabel" defStyleNum="dsOthers" underline="true" />
+			<itemData name="footnote" defStyleNum="dsOthers" italic="true" />
+			<itemData name="meta"  defStyleNum="dsComment" />
+			<itemData name="reflink" defStyleNum="dsAlert" underline="true" bold="false" />
+		</itemDatas>
+
+    </highlighting>
+
+	 <general>
+		 <comments>
+			 <comment name="multiLine" start="&lt;!--" end="--&gt;" region="comment" />
+		 </comments>
+	 </general>
+
+ </language>
