@@ -31,12 +31,14 @@
 			 <!ENTITY autolinkregex '&lt;(https?|ftp):[^\"&gt;\s]+&gt;'>
 			 <!ENTITY mailtolinkregex '&lt;(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;'>
 			 <!ENTITY rulerregex '\s*([\*\-_]\s?){3,}\s*'>
+			 <!-- two spaces at end of line generates linebreak -->
+			 <!ENTITY linebreakregex "  $"> 
 			 <!ENTITY strikeoutregex "[~]{2}[^~].*[^~][~]{2}"> <!-- pandoc style -->
 ]>
 			 
-<language name="Markdown" version="1.1" section="Markup"
+<language name="Markdown" version="1.2" section="Markup"
 		extensions="*.text;*.md;*.mmd" priority="15"
-		author="Darrin Yeager webmaster@dyeager.org"
+		author="Darrin Yeager, Claes Holmerson"
 		license="GPL,BSD" >
 	<highlighting>
 		<contexts>
@@ -93,6 +95,7 @@
 				<RegExpr attribute="autolink" String="&autolinkregex;"/>
 				<RegExpr attribute="mailtolink" String="&mailtolinkregex;"/>
 				<RegExpr attribute="strikeout" minimal="true" String="&strikeoutregex;"/>
+				<RegExpr attribute="linebreak" minimal="true" String="&linebreakregex;"/>
 			</context>
 		</contexts>
 
@@ -104,6 +107,7 @@
 			<itemData name="strong" defStyleNum="dsNormal" bold="true" />
 			<itemData name="ruler" defStyleNum="dsNormal" bold="true" />
 			<itemData name="strikeout" defStyleNum="dsNormal" strikeOut="true" />
+			<itemData name="linebreak" defStyleNum="dsNormal" underline="true" color="#999999"/>
 			<itemData name="h1" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h2" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h3" defStyleNum="dsFunction" bold="true" />
