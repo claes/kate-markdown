@@ -5,7 +5,7 @@
 	Copyright 2008 Darrin Yeager. http://www.dyeager.org/
 	Dual-Licensed under both GPL and BSD licenses.
 	
-	Extended 2009 Claes Holmerson
+	Extended 2009 Claes Holmerson. http://github.com/claes/kate-markdown/
 -->
 
 
@@ -22,8 +22,8 @@
 			 <!ENTITY strongemphasisregex "(\s|^)[\*_]{3}[^\*_]+[\*_]{3}(\s|\.|,|;|:|\-|\?|$)">
 			 <!ENTITY strongregex "(\s|^)[\*_]{2}[^\s]{1}[^\*_]+[\*_]{2}(\s|\.|,|;|:|\-|\?|$)">
 			 <!ENTITY emphasisregex "(\s|^)[\*_]{1}[^\s]{1}[^\*_]+[\*_]{1}(\s|\.|,|;|:|\-|\?|$)">
-			 <!ENTITY reflinkregex '\[[^\]\^]+\]\s*\[[^\]]*\]\s*(\s\"[^\"]*\"){0,1}'>
-			 <!ENTITY reflinktargetregex '\[[^\]\^]+\]\:\s+[^\s]+(\s\"[^\"]*\"){0,1}'>
+			 <!ENTITY reflinkregex '\[[^\]\^]+\]\s*\[[^\]]*\]\s*(\s+\"[^\"]*\"){0,1}'>
+			 <!ENTITY reflinktargetregex '\[[^\]\^]+\]\:\s+[^\s]+(\s+\"[^\"]*\"){0,1}'>
 			 <!ENTITY footnoteregex "\[\^[^\]]+\]">
 			 <!ENTITY inlinelinkregex '\[[^\]\^]+\]\s*\([^\(]*\)'>
 			 <!ENTITY inlineimageregex '\!\[[^\]\^]+\]\([^\(]*\)'>
@@ -78,7 +78,7 @@
 				<RegExpr String="--&gt;" attribute="comment" context="#pop" endRegion="comment"/>
 			</context>
 
-			<context name="inc" >
+			<context attribute="common" name="inc" lineEndContext="#stay" >
 				<RegExpr attribute="code" String="`[^`]+`" />
 				<RegExpr context="comment" String="&lt;!--" beginRegion="comment" />
 				<RegExpr attribute="reflink" String="&reflinkregex;" />
@@ -95,9 +95,9 @@
 
 		<itemDatas>
 			<itemData name="Normal Text" defStyleNum="dsNormal" />
-			<itemData name="strongemphasis" italic="true" bold="true"/>
-			<itemData name="emphasis" italic="true" />
-			<itemData name="strong"  bold="true" />
+			<itemData name="strongemphasis" defStyleNum="dsNormal" italic="true" bold="true"/>
+			<itemData name="emphasis" defStyleNum="dsNormal" italic="true" />
+			<itemData name="strong" defStyleNum="dsNormal" bold="true" />
 			<itemData name="h1" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h2" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h3" defStyleNum="dsFunction" bold="true" />
