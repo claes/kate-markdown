@@ -30,6 +30,7 @@
 			 <!ENTITY refimageregex '\!\[[^\]\^]+\]\[[^\[]*\]'>
 			 <!ENTITY autolinkregex '&lt;(https?|ftp):[^\"&gt;\s]+&gt;'>
 			 <!ENTITY mailtolinkregex '&lt;(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;'>
+			 <!ENTITY rulerregex '\s*([\*\-_]\s?){3,}\s*'>
 ]>
 			 
 <language name="Markdown" version="1.1" section="Markup"
@@ -46,6 +47,7 @@
 				<RegExpr attribute="h3" String="^###\s.*[#]?$" />
 				<RegExpr attribute="h4" String="^####\s.*[#]?$" />
 				<RegExpr attribute="h5" String="^#####\s.*[#]?$" />
+				<RegExpr attribute="ruler" String="&rulerregex;" />
 				<RegExpr attribute="strong" String="&strongregex;" />
 				<RegExpr attribute="emphasis" String="&emphasisregex;" />
 				<RegExpr attribute="strongemphasis" String="&strongemphasisregex;" />
@@ -67,7 +69,7 @@
 				<RegExpr attribute="bl-emphasis" String="&emphasisregex;" />
 				<IncludeRules context="inc" />
 			</context>
-
+			
 			<context attribute="numlist" lineEndContext="#pop" name="numlist" >
 				<RegExpr attribute="nl-strong" String="&strongregex;" />
 				<RegExpr attribute="nl-emphasis" String="&emphasisregex;" />
@@ -95,9 +97,11 @@
 
 		<itemDatas>
 			<itemData name="Normal Text" defStyleNum="dsNormal" />
+			<itemData name="common" defStyleNum="dsNormal" />
 			<itemData name="strongemphasis" defStyleNum="dsNormal" italic="true" bold="true"/>
 			<itemData name="emphasis" defStyleNum="dsNormal" italic="true" />
 			<itemData name="strong" defStyleNum="dsNormal" bold="true" />
+			<itemData name="ruler" defStyleNum="dsNormal" bold="true" />
 			<itemData name="h1" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h2" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h3" defStyleNum="dsFunction" bold="true" />
