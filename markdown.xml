@@ -31,6 +31,7 @@
 			 <!ENTITY autolinkregex '&lt;(https?|ftp):[^\"&gt;\s]+&gt;'>
 			 <!ENTITY mailtolinkregex '&lt;(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)&gt;'>
 			 <!ENTITY rulerregex '\s*([\*\-_]\s?){3,}\s*'>
+			 <!ENTITY strikeoutregex "[~]{2}[^~].*[^~][~]{2}"> <!-- pandoc style -->
 ]>
 			 
 <language name="Markdown" version="1.1" section="Markup"
@@ -40,7 +41,7 @@
 	<highlighting>
 		<contexts>
 
-			<context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" >
+			<context attribute="Normal Text" lineEndContext="#stay" name="Normal Text" >
 				<DetectChar context="blockquote" char="&gt;" column="0"/>
 				<RegExpr attribute="h1" String="^#\s.*[#]?$" />
 				<RegExpr attribute="h2" String="^##\s.*[#]?$" />
@@ -75,7 +76,7 @@
 				<RegExpr attribute="nl-emphasis" String="&emphasisregex;" />
 				<IncludeRules context="inc" />
 			</context>
-
+			
 			<context attribute="comment" lineEndContext="#stay" name="comment" >
 				<RegExpr String="--&gt;" attribute="comment" context="#pop" endRegion="comment"/>
 			</context>
@@ -91,8 +92,8 @@
 				<RegExpr attribute="refimage" String="&refimageregex;"/>
 				<RegExpr attribute="autolink" String="&autolinkregex;"/>
 				<RegExpr attribute="mailtolink" String="&mailtolinkregex;"/>
+				<RegExpr attribute="strikeout" minimal="true" String="&strikeoutregex;"/>
 			</context>
-
 		</contexts>
 
 		<itemDatas>
@@ -102,6 +103,7 @@
 			<itemData name="emphasis" defStyleNum="dsNormal" italic="true" />
 			<itemData name="strong" defStyleNum="dsNormal" bold="true" />
 			<itemData name="ruler" defStyleNum="dsNormal" bold="true" />
+			<itemData name="strikeout" defStyleNum="dsNormal" strikeOut="true" />
 			<itemData name="h1" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h2" defStyleNum="dsFunction" bold="true" />
 			<itemData name="h3" defStyleNum="dsFunction" bold="true" />
