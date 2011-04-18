@@ -46,7 +46,9 @@
 			<context attribute="Normal Text" lineEndContext="#stay" name="Normal Text" >
 				<DetectChar context="blockquote" char="&gt;" column="0"/>
 				<RegExpr attribute="h1" String="^#\s.*[#]?$" />
+				<RegExpr attribute="h1" String="^==+$" />
 				<RegExpr attribute="h2" String="^##\s.*[#]?$" />
+				<RegExpr attribute="h2" String="^--+$" />
 				<RegExpr attribute="h3" String="^###\s.*[#]?$" />
 				<RegExpr attribute="h4" String="^####\s.*[#]?$" />
 				<RegExpr attribute="h5" String="^#####\s.*[#]?$" />
